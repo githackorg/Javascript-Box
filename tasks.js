@@ -1,19 +1,51 @@
+/*
+    Copyright 2021. Eduardo Programador
+    www.eduardoprogramador.com
+    consultoria@eduardoprogramador.com
+    All Rights Reserved
+
+    This file contains common routines
+    for Javascript jobs.
+
+    1) Include it on your HTML File
+    Eg.: <stript src="js/tasks.js"></script>
+
+    2) Initiate the class
+    Eg.: let tasks = new Tasks();
+
+    3)Invoke the methods
+    Eg.: tasks.set("http://example.com");
+*/
+
 class Tasks {
 
+    /*
+        The constructor does not require any arguments
+    */
     constructor() {
         this.latitude = 0;
         this.longitude = 0;
         this.altitude = 0;
     }
 
+    /* 
+        Change the current page without open a new tab
+    */
     set(url) {
         location.replace(url);
     }
 
+    /* 
+        Go to some url with opening a new tab
+    */
     go(url) {
         window.open(url);
     }
 
+    /*
+        Gets the current date
+        in format: day/month/year hour:minutes:secods
+    */
     getTime() {
         let date = new Date();
 
@@ -26,6 +58,10 @@ class Tasks {
             return day + "/" + month + "/" + year + " " + hour + ":" + min + ":" + date.getSeconds();
     }
 
+    /* 
+        Makes an HttpPost Request
+        Eg.: tasks.httpPost("http://example.com","param1=hello&param2=world");
+    */
     httpPost(url,params) {
 
         var res = "";
@@ -42,6 +78,10 @@ class Tasks {
         return res;
     }
 
+    /*
+        Makes an HttpGet Request
+        Eg.: tasks.get(http://example.com);
+    */
     httpGet(url) {
 
         var res = "";
@@ -58,6 +98,9 @@ class Tasks {
 
     }
 
+    /*
+        sets new cookie
+    */
     setCookie(cName) {
         
 
@@ -89,6 +132,9 @@ class Tasks {
 
         }
 
+        /*
+            gets the cookie from Common Name
+        */
         getCookie(cName) {
                     
             let name = cName;
@@ -108,6 +154,10 @@ class Tasks {
 
       };
 
+      /*
+        Returns true if the protocol is Http.
+        False, otherwise
+      */
       isHttp() {
           if(location.protocol === 'http:') {
               return true;
@@ -116,6 +166,10 @@ class Tasks {
           }
       }
 
+      /*
+        Returns true if the protocol is Https.
+        False, otherwise
+      */
       isHttps() {
           if(location.protocol === 'https:') {
               return true;
@@ -124,14 +178,29 @@ class Tasks {
           }
       }
 
+      /*
+        display an alert dialog
+      */
       display(msg) {
           alert(msg);
       }
 
+      /*
+        Generates an radom number from a range.
+        Eg.: tasks.getRandom(1,10) - 
+            A number from 1 to 10.
+      */
       getRandom(down,up){
           return Math.floor((Math.random() * up) + down);
       }
 
+      /*
+        Initiates the location services
+        for calculating the latitude, etc.
+        Eg.: tasks.pos();
+        Returns true if the call succeeds,
+        false otherwise
+      */
       pos() {
 
           if(navigator.geolocation) {
@@ -151,14 +220,26 @@ class Tasks {
           }
       }
 
+      /* 
+        gets the current latitude,
+        after the call to pos method
+      */
       getLatitude() {
           return this.latitude;
       }
 
+      /*
+        gets the current longitude,
+        after the call to pos method
+      */
       getLongitude() {
           return this.longitude;
       }
 
+      /*
+        gets the current altitude,
+        after the call to pos method
+      */
       getAltitude() {
           return this.altitude;
       }
