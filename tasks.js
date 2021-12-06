@@ -62,39 +62,30 @@ class Tasks {
         Makes an HttpPost Request
         Eg.: tasks.httpPost("http://example.com","param1=hello&param2=world");
     */
-    httpPost(url,params) {
-
-        var res = "";
+    httpPost(url,params, callback) {        
 
         let xhttp = new XMLHttpRequest();
         xhttp.open("POST",url);
-        xhttp.onload = function () {
-            res = this.responseText;
-        };
+        xhttp.onload = callback;
         
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send(params);        
-
-        return res;
+        
     }
 
     /*
         Makes an HttpGet Request
         Eg.: tasks.get(http://example.com);
     */
-    httpGet(url) {
-
-        var res = "";
+    httpGet(url, callback) {
+        
 
         let xhttp = new XMLHttpRequest();
         xhttp.open("GET",url);
-        xhttp.onload = function () {
-            res = this.responseText;
-        };
+        xhttp.onload = callback;
                 
         xhttp.send();     
-        
-        return res;
+                
 
     }
 
@@ -242,5 +233,27 @@ class Tasks {
       */
       getAltitude() {
           return this.altitude;
+      }
+
+      hexToRgb(hex) {
+        
+        let first = hex[1] + hex[2];
+        let second = hex[3] + hex[4];
+        let third = hex[5] + hex[6];    
+        
+        let res = [];
+        res.push(parseInt(first,16));
+        res.push(parseInt(second,16));
+        res.push(parseInt(third,16));
+
+        return res;
+        
+        
+      }
+
+      convert(nSrc, bSrc,bOut) {
+        
+        return parseInt(nSrc,bSrc).toString(bOut);
+        
       }
 }
