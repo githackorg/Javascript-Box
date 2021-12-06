@@ -27,11 +27,19 @@ function S(id) {
     return document.getElementById(id).style;
 }
 
+function val(id) {
+    return document.getElementById(id).value;
+}
+
+function valp(id,val) {
+    document.getElementById(id).value = val;
+}
+
 /* 
     turns the object visible
 */
 function on(id) {
-    document.getElementById(id).style.visibility("visible");
+    document.getElementById(id).style.visibility = "visible";
 }
 
 /* 
@@ -46,21 +54,21 @@ function txt(obj,text) {
     turns the object visible
 */
 function On(obj) {
-    document.getElementById(obj).style.visibility("block");
+    document.getElementById(obj).style.display = "block";
 }
 
 /*
     turns the object invisible
 */
 function off(obj) {
-    document.getElementById(obj).style.display("hidden");
+    document.getElementById(obj).style.visibility = "hidden";
 }
 
 /*
     turns the object invisible removing the white spaces
 */
 function Off(obj) {
-    document.getElementById(obj).style.display("none");
+    document.getElementById(obj).style.display = "none";
 }
 
 /*
@@ -101,6 +109,10 @@ function attach(obj,type,callback) {
             document.getElementById(obj).onfocus = callback;
             break;
 
+        case "change":
+            document.getElementById(obj).onchange = callback;
+            break;
+
     }
 }
 
@@ -109,6 +121,13 @@ function attach(obj,type,callback) {
 */
 function to(hash) {
     location.hash = hash;
+}
+
+/* 
+    Makes an element focused
+*/
+function _in(id) {
+    document.getElementById(id).focus();
 }
 
 
