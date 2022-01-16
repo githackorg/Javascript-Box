@@ -43,11 +43,18 @@ function on(id) {
 }
 
 /* 
-    appens some HTML text to an element
+    changes some HTML code to an element
 */
 function txt(obj,text) {
     document.getElementById(obj).innerHTML = text;
     
+}
+
+/*
+    changes only the text of an html element
+*/ 
+function txt_(obj,text) {
+    document.getElementById(obj).innerText = text;
 }
 
 /* 
@@ -98,7 +105,7 @@ function attach(obj,type,callback) {
     switch(type) {
 
         case "click":
-            document.getElementById(obj).onclick = callback;
+            document.getElementById(obj).onclick = callback;            
             break;
 
         case "scroll":
@@ -111,6 +118,32 @@ function attach(obj,type,callback) {
 
         case "change":
             document.getElementById(obj).onchange = callback;
+            break;
+
+        case "over":
+            document.getElementById(obj).onmouseover = callback;
+            break;
+
+        case "leave":
+            document.getElementById(obj).onmouseleave = callback;
+            break;
+
+    }
+}
+
+/*
+    adds some event to the document root
+    Eg.: attach_("keydown",function(){'some code'})
+*/
+function attach_(type,callback) {
+    
+    switch(type) {
+
+        case "keydown":
+            document.addEventListener("keydown",callback);
+            break;
+
+        default:
             break;
 
     }
